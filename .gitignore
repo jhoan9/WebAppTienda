@@ -1,0 +1,40 @@
+# .gitignore for .NET Web Forms project
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+*.cache
+*.log
+
+# Build results
+bin/
+obj/
+
+# Package files
+*.nupkg
+*.paket.restore.log
+
+# Node.js dependencies (if used)
+node_modules/
+
+# Temporary files
+[Tt]emp/
+[Tt]est[Rr]esult*
+
+# Ignore ReSharper files (if used)
+_ReSharper*/
+
+# Ignore SQL Server database files (if any)
+*.mdf
+*.ldf
+
+# Ignore IIS Express configuration file (if used)
+*.vs/config/applicationhost.config
+
+# Ignore NuGet packages directory
+packages/
+
+# Ignore Visual Studio code coverage files
+*.coverage
+*.coveragexml
