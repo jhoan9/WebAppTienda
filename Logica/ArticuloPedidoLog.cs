@@ -14,5 +14,15 @@ namespace Logica
         {
             return objArticuloPedido.obtenerArticuloPedido();
         }
+
+        public bool saveArticuloPedido(ArticuloPedido articuloPedido)
+        {
+            return objArticuloPedido.saveArticuloPedido(articuloPedido);
+        }
+
+        public bool updateArticuloPedido(ArticuloPedido articuloPedidoUpdate)
+        {
+            return objArticuloPedido.updateArticuloPedido(articuloPedidoUpdate);
+        }
     }
 }

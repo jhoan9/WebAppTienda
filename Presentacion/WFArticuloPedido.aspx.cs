@@ -12,6 +12,8 @@ namespace Presentacion
     public partial class WFArticuloPedido : System.Web.UI.Page
     {
         ArticuloPedidoLog objArticuloPedido = new ArticuloPedidoLog();
+        ArticuloLog objArticulo = new ArticuloLog();
+        PedidoLog objPedido = new PedidoLog();
         protected void Page_Load(object sender, EventArgs e)
         {
             /* Se verifica si la página se está cargando por primera vez o 
@@ -20,6 +22,8 @@ namespace Presentacion
             if (!IsPostBack)
             {
                 ObtenerArticuloPedido();
+                ObtenerArticulos();
+                ObtenerPedidos();
             }
         }
 
@@ -38,6 +42,28 @@ namespace Presentacion
             GVArticuloPedido.DataBind();
         }
 
+        private void ObtenerArticulos()
+        {
+            List<Articulo> articulos = objArticulo.obtenerArticulo();
+            DDLArticulo.DataSource = articulos;
+            DDLArticulo.DataTextField = "nombreArticulo";
+            DDLArticulo.DataValueField = "IdArticulo";
+            DDLArticulo.DataBind();
+
+            DDLArticulo.Items.Insert(0, new ListItem("Seleccionar", ""));
+        }
+
+        private void ObtenerPedidos()
+        {
+            List<Pedido> pedidos = objPedido.obtenerPedido();
+            DDLPedido.DataSource = pedidos;
+            DDLPedido.DataTextField = "descripcionPedido";
+            DDLPedido.DataValueField = "IdPedido";
+            DDLPedido.DataBind();
+
+            DDLPedido.Items.Insert(0, new ListItem("Seleccionar", ""));
+        }
+
         protected void BtnGuardar_Click(object sender, EventArgs e)
         {
 
@@ -50,7 +76,25 @@ namespace Presentacion
 
         protected void GVArticuloPedido_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // La fila seleccionada está en GVCategoria.SelectedRow
+            GridViewRow fila = GVArticuloPedido.SelectedRow;
+            // Asumiendo que tienes 3 columnas: ID, Nombre, Descripción
+            TBIdArtPed.Text = fila.Cells[0].Text;
+            DDLArticulo.Text = fila.Cells[1].Text;
+            DDLPedido.Text = fila.Cells[2].Text;
+            TBCantidad.Text = fila.Cells[3].Text;
 
+            BtnGuardar.Visible = false;
+            BtnActualizar.Visible = true;
+        }
+
+        protected void GVArticuloPedido_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["ondblclick"] = Page.ClientScript.GetPostBackClientHyperlink(GVArticuloPedido, "Select$" + e.Row.RowIndex);
+                e.Row.ToolTip = "Doble clic para editar este Articulo";
+            }
         }
     }
 }
