@@ -63,7 +63,7 @@ namespace Datos
             return lista;
         }
 
-        public bool saveArticulo(String _nombre, String _marca, Decimal _precio, String _estado, int _id_categoria)
+        public bool saveArticulo(Articulo articulo)
         {
             bool executed = false;
             int row;
@@ -72,11 +72,11 @@ namespace Datos
             objectSelectCmd.Connection = persistencia.openConnection();
             objectSelectCmd.CommandText = "spInsertArticle";
             objectSelectCmd.CommandType = CommandType.StoredProcedure;
-            objectSelectCmd.Parameters.Add("p_name", MySqlDbType.VarString).Value = _nombre;
-            objectSelectCmd.Parameters.Add("p_marca", MySqlDbType.VarString).Value = _marca;
-            objectSelectCmd.Parameters.Add("p_precio", MySqlDbType.Decimal).Value = _precio;
-            objectSelectCmd.Parameters.Add("p_estado", MySqlDbType.VarString).Value = _estado;
-            objectSelectCmd.Parameters.Add("p_categoria_id", MySqlDbType.Int24).Value = _id_categoria;            
+            objectSelectCmd.Parameters.Add("p_name", MySqlDbType.VarString).Value = articulo.nombreArticulo;
+            objectSelectCmd.Parameters.Add("p_marca", MySqlDbType.VarString).Value = articulo.marcaArticulo;
+            objectSelectCmd.Parameters.Add("p_precio", MySqlDbType.Decimal).Value = articulo.precioArticulo;
+            objectSelectCmd.Parameters.Add("p_estado", MySqlDbType.VarString).Value = articulo.estadoArticulo;
+            objectSelectCmd.Parameters.Add("p_categoria_id", MySqlDbType.Int24).Value = articulo.idCategoria;            
 
 
             try
@@ -96,7 +96,7 @@ namespace Datos
 
         }
 
-        public bool updateArticulo(int _id_articulo, string _name, String _marca, decimal _precio, String _estado, int _id_categoria)
+        public bool updateArticulo(Articulo articuloActualizado)
         {
             bool executed = false;
             int row;
@@ -105,12 +105,12 @@ namespace Datos
             objSelectCmd.Connection = persistencia.openConnection();
             objSelectCmd.CommandText = "spUpdateArticle";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
-            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id_articulo;
-            objSelectCmd.Parameters.Add("p_name", MySqlDbType.VarString).Value = _name;
-            objSelectCmd.Parameters.Add("p_marca", MySqlDbType.VarString).Value = _marca;
-            objSelectCmd.Parameters.Add("p_precio", MySqlDbType.Decimal).Value = _precio;
-            objSelectCmd.Parameters.Add("p_estado", MySqlDbType.VarString).Value = _estado;
-            objSelectCmd.Parameters.Add("p_categoria_id", MySqlDbType.Int32).Value = _id_categoria;
+            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = articuloActualizado.IdArticulo;
+            objSelectCmd.Parameters.Add("p_name", MySqlDbType.VarString).Value = articuloActualizado.nombreArticulo;
+            objSelectCmd.Parameters.Add("p_marca", MySqlDbType.VarString).Value = articuloActualizado.marcaArticulo;
+            objSelectCmd.Parameters.Add("p_precio", MySqlDbType.Decimal).Value = articuloActualizado.precioArticulo;
+            objSelectCmd.Parameters.Add("p_estado", MySqlDbType.VarString).Value = articuloActualizado.estadoArticulo;
+            objSelectCmd.Parameters.Add("p_categoria_id", MySqlDbType.Int32).Value = articuloActualizado.idCategoria;
 
 
             try

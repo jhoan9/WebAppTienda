@@ -1,0 +1,88 @@
+﻿body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 2rem auto;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+nav {
+    margin-bottom: 1.5rem;
+}
+
+    nav a {
+        margin-right: 1rem;
+        color: #007BFF;
+        text-decoration: none;
+    }
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: .5rem;
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+    padding: .5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-buttons {
+    margin-top: 1rem;
+}
+
+.btn {
+    padding: .6rem 1.2rem;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: .5rem;
+}
+
+.btn-secundario {
+    background-color: #17a2b8;
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+    .tabla th, .tabla td {
+        border: 1px solid #ddd;
+        padding: .75rem;
+        text-align: left;
+    }
+
+    .tabla th {
+        background-color: #f1f1f1;
+    }
+
+.mensaje-error {
+    color: red;
+    margin-top: 1rem;
+    display: block;
+}

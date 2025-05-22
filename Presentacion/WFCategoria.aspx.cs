@@ -58,7 +58,7 @@ namespace Presentacion
                 TBNombreCategoria.Text = "";
                 TBDescripcionCategoria.Text = "";
                 ObtenerCategorias();
-                LblMensaje.Text = "Datos Actualizados correctamente";
+                LblMensaje.Text = "Datos Guardados correctamente";
             }
         }
 

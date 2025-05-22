@@ -67,6 +67,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\styles\Articulo.css" />
+    <Content Include="assets\styles\ArticuloPedido.css" />
+    <Content Include="assets\styles\Categoria.css" />
+    <Content Include="assets\styles\Cliente.css" />
+    <Content Include="assets\styles\Inicio.css" />
+    <Content Include="assets\styles\Pedido.css" />
+    <Content Include="assets\styles\Persona.css" />
+    <Content Include="assets\styles\Proveedor.css" />
     <Content Include="Inicio.aspx" />
     <Content Include="Web.config" />
     <Content Include="WFArticulo.aspx" />
@@ -155,6 +163,7 @@
       <Name>Modelo</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

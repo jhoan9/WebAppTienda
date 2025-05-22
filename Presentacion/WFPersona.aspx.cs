@@ -37,5 +37,20 @@ namespace Presentacion
             // Se enlazan los datos con el GridView.
             GVPersona.DataBind();
         }
+
+        protected void BtnGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void BtnActualizar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void GVPersona_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -1,0 +1,99 @@
+﻿/* assets/styles/categoria.css */
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 60px auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+.nav-links {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+    .nav-links a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: #3498db;
+        font-weight: 500;
+        transition: color 0.3s;
+    }
+
+        .nav-links a:hover {
+            color: #1d6fa5;
+        }
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #333;
+}
+
+input[type="text"], textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+button, input[type="submit"] {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+}
+
+    button:hover, input[type="submit"]:hover {
+        background-color: #2980b9;
+    }
+
+.grid-container {
+    margin-top: 30px;
+}
+
+.gridview {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .gridview th, .gridview td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+
+    .gridview th {
+        background-color: #3498db;
+        color: white;
+    }
+
+    .gridview tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }

@@ -49,7 +49,11 @@ namespace Datos
                     IdProveedor = reader.GetInt32("idproveedor"),
                     estadoProveedor = reader.GetString("pro_estado"),
                     IdPersona = reader.GetInt32("persona_idpersona"),
-                    nombrePersona = reader.GetString("per_nombre")
+                    per_telefono = reader.GetString("per_telefono"),
+                    per_direccion = reader.GetString("per_direccion"),
+                    per_correo = reader.GetString("per_correo"),
+                    pro_estado = reader.GetString("pro_estado"),
+                    per_nombre = reader.GetString("per_nombre")
                 };
 
                 // Agregar el producto a la lista

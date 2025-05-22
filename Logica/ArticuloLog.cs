@@ -18,14 +18,19 @@ namespace Logica
             return objArticulo.obtenerArticulo();
         }
 
-        public bool saveArticulo(String nombre, String marca, Decimal precio, String estado, int idCategoria)
+        public bool saveArticulo(Articulo articulo)
         {
-            return objArticulo.saveArticulo(nombre, marca, precio, estado, idCategoria);
+            return objArticulo.saveArticulo(articulo);
         }
 
-        public bool updateArticulo(int id_articulo, String nombre, String marca, Decimal precio, String estado, int idCategoria)
+        /*public bool saveArticuloCopy(String nombre, String marca, Decimal precio, String estado, int idCategoria)
         {
-            return objArticulo.updateArticulo(id_articulo, nombre, marca, precio, estado, idCategoria);
+            return objArticulo.saveArticulo(nombre, marca, precio, estado, idCategoria);
+        }*/
+
+        public bool updateArticulo(Articulo articuloActualizado)
+        {
+            return objArticulo.updateArticulo(articuloActualizado);
         }
     }
 }
