@@ -66,12 +66,98 @@ namespace Presentacion
 
         protected void BtnGuardar_Click(object sender, EventArgs e)
         {
+            // Validar selección
+            if (string.IsNullOrWhiteSpace(DDLArticulo.SelectedValue) || string.IsNullOrWhiteSpace(DDLPedido.SelectedValue))
+            {
+                LblMensaje.Text = "Debe seleccionar un artículo y un pedido.";
+                return;
+            }
 
+            // Validar cantidad
+            if (!int.TryParse(TBCantidad.Text, out int cantidad) || cantidad <= 0)
+            {
+                LblMensaje.Text = "La cantidad debe ser un número mayor que 0.";
+                return;
+            }
+
+            // Crear objeto ArticuloPedido
+            ArticuloPedido nuevo = new ArticuloPedido
+            {
+                IdArticulo = int.Parse(DDLArticulo.SelectedValue),
+                IdPedido = int.Parse(DDLPedido.SelectedValue),
+                cantidadArticuloPedido = cantidad
+            };
+
+            // Guardar en la base de datos
+            bool exito = objArticuloPedido.saveArticuloPedido(nuevo);
+            if (exito)
+            {                
+                LimpiarFormulario();
+                ObtenerArticuloPedido();
+                LblMensaje.Text = "Registro guardado correctamente.";
+            }
+            else
+            {
+                LblMensaje.Text = "Error al guardar el registro.";
+            }
         }
 
         protected void BtnActualizar_Click(object sender, EventArgs e)
         {
+            // Validar ID
+            if (string.IsNullOrWhiteSpace(TBIdArtPed.Text))
+            {
+                LblMensaje.Text = "Debe seleccionar un registro para actualizar.";
+                return;
+            }
 
+            // Validar selección
+            if (string.IsNullOrWhiteSpace(DDLArticulo.SelectedValue) || string.IsNullOrWhiteSpace(DDLPedido.SelectedValue))
+            {
+                LblMensaje.Text = "Debe seleccionar un artículo y un pedido.";
+                return;
+            }
+
+            // Validar cantidad
+            if (!int.TryParse(TBCantidad.Text, out int cantidad) || cantidad <= 0)
+            {
+                LblMensaje.Text = "La cantidad debe ser un número mayor que 0.";
+                return;
+            }
+
+            // Crear objeto para actualizar
+            ArticuloPedido actualizado = new ArticuloPedido
+            {
+                IdpedidoArticulo = int.Parse(TBIdArtPed.Text),
+                IdArticulo = int.Parse(DDLArticulo.SelectedValue),
+                IdPedido = int.Parse(DDLPedido.SelectedValue),
+                cantidadArticuloPedido = cantidad
+            };
+
+            bool exito = objArticuloPedido.updateArticuloPedido(actualizado);
+            if (exito)
+            {                
+                LimpiarFormulario();
+                ObtenerArticuloPedido();
+                BtnGuardar.Visible = true;
+                BtnActualizar.Visible = false;
+                LblMensaje.Text = "Registro actualizado correctamente.";
+            }
+            else
+            {
+                LblMensaje.Text = "Error al actualizar el registro.";
+            }
+        }
+
+        private void LimpiarFormulario()
+        {
+            TBIdArtPed.Text = "";
+            DDLArticulo.SelectedIndex = 0;
+            DDLPedido.SelectedIndex = 0;
+            TBCantidad.Text = "";
+            LblMensaje.Text = "";
+            BtnGuardar.Visible = true;
+            BtnActualizar.Visible = false;
         }
 
         protected void GVArticuloPedido_SelectedIndexChanged(object sender, EventArgs e)

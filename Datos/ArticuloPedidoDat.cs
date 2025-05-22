@@ -77,7 +77,7 @@ namespace Datos
             objectSelectCmd.Connection = persistencia.openConnection();
             objectSelectCmd.CommandText = "spInsertArticuloPedido";
             objectSelectCmd.CommandType = CommandType.StoredProcedure;
-            objectSelectCmd.Parameters.Add("p_articulo_id_articulo", MySqlDbType.Int32).Value = articuloPedido.IdpedidoArticulo;
+            objectSelectCmd.Parameters.Add("p_articulo_id_articulo", MySqlDbType.Int32).Value = articuloPedido.IdArticulo;
             objectSelectCmd.Parameters.Add("p_pedido_idpedido", MySqlDbType.Int32).Value = articuloPedido.IdPedido;
             objectSelectCmd.Parameters.Add("p_art_pedido_cantidad", MySqlDbType.Int32).Value = articuloPedido.cantidadArticuloPedido;
 
