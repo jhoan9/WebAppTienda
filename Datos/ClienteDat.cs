@@ -49,7 +49,7 @@ namespace Datos
                     IdCliente = reader.GetInt32("dni"),
                     tipoCliente = reader.GetString("cli_tipo"),
                     IdPersona = reader.GetInt32("persona_idpersona"),
-                    nombrePersona = reader.GetString("per_nombre")
+                   
                 };
 
                 // Agregar el producto a la lista
@@ -62,7 +62,7 @@ namespace Datos
             return lista;
         }
 
-        public bool saveCliente(String _p_cli_tipo, int _p_persona_id_persona)
+        public bool saveCliente(Cliente cliente)
         {
             bool executed = false;
             int row;
@@ -71,8 +71,8 @@ namespace Datos
             objectSelectCmd.Connection = persistencia.openConnection();
             objectSelectCmd.CommandText = "spInsertCliente";
             objectSelectCmd.CommandType = CommandType.StoredProcedure;
-            objectSelectCmd.Parameters.Add("p_cli_tipo", MySqlDbType.VarString).Value = _p_cli_tipo;
-            objectSelectCmd.Parameters.Add("p_persona_id_persona", MySqlDbType.Int32).Value = _p_persona_id_persona;
+            objectSelectCmd.Parameters.Add("p_cli_tipo", MySqlDbType.VarString).Value = cliente.tipoCliente;
+            objectSelectCmd.Parameters.Add("p_persona_id_persona", MySqlDbType.Int32).Value = cliente.IdPersona;
 
             try
             {
@@ -90,8 +90,8 @@ namespace Datos
             return executed;
 
         }
-
-        public bool updateCategory(int _p_id, string _p_cli_tipo, int _persona_id_persona)
+        
+        public bool updateCliente(Cliente cliente)
         {
             bool executed = false;
             int row;
@@ -100,9 +100,9 @@ namespace Datos
             objSelectCmd.Connection = persistencia.openConnection();
             objSelectCmd.CommandText = "spUpdateCliente";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
-            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _p_id;
-            objSelectCmd.Parameters.Add("p_cli_tipo", MySqlDbType.VarString).Value = _p_cli_tipo;
-            objSelectCmd.Parameters.Add("p_persona_id_persona", MySqlDbType.VarString).Value = _persona_id_persona;
+            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = cliente.IdCliente;
+            objSelectCmd.Parameters.Add("p_cli_tipo", MySqlDbType.VarString).Value = cliente.tipoCliente;
+            objSelectCmd.Parameters.Add("p_persona_id_persona", MySqlDbType.VarString).Value = cliente.IdPersona;
 
             try
             {

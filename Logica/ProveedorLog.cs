@@ -17,5 +17,16 @@ namespace Logica
         {
             return objProveedor.obtenerProveedor();
         }
+
+        public bool saveProveedor(Proveedor proveedor)
+        {
+            return objProveedor.saveProveedor(proveedor);
+        }
+
+        public bool updateProveedor(Proveedor proveedor)
+        {
+            return objProveedor.updateProveedor(proveedor);
+        }
+
     }
 }
