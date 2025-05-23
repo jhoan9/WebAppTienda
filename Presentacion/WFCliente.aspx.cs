@@ -12,6 +12,7 @@ namespace Presentacion
     public partial class WFCliente : System.Web.UI.Page
     {
         ClienteLog objCliente = new ClienteLog();
+        PersonaLog objPersona = new PersonaLog();
         protected void Page_Load(object sender, EventArgs e)
         {
             /* Se verifica si la página se está cargando por primera vez o 
@@ -20,7 +21,19 @@ namespace Presentacion
             if (!IsPostBack)
             {
                 ObtenerCliente();
+                CargarPersonas();
             }
+        }
+
+        private void CargarPersonas()
+        {
+            List<Persona> personas = objPersona.obtenerPersona();
+            ddlPersona.DataSource = personas;
+            ddlPersona.DataTextField = "nombrePersona";
+            ddlPersona.DataValueField = "IdPersona";
+            ddlPersona.DataBind();
+
+            ddlPersona.Items.Insert(0, new ListItem("Seleccionar", ""));
         }
 
         private void ObtenerCliente()
@@ -40,17 +53,113 @@ namespace Presentacion
 
         protected void BtnGuardar_Click(object sender, EventArgs e)
         {
+            // Validaciones básicas
+            if (string.IsNullOrWhiteSpace(ddlPersona.Text) ||
+                string.IsNullOrWhiteSpace(ddlTipo.Text))
+            {
+                LblMensaje.Text = "Todos los campos son obligatorios.";
+                return;
+            }
 
+            //Crear objeto artículo
+            Cliente nuevoCliente = new Cliente
+            {
+                IdPersona = int.Parse(ddlPersona.SelectedValue),
+                tipoCliente = ddlTipo.SelectedValue,
+            };
+
+            // Guardar en base de datos
+            bool exito = objCliente.saveCliente(nuevoCliente);
+            if (exito)
+            {
+                LimpiarFormulario();
+                ObtenerCliente();
+                LblMensaje.Text = "Proveedor guardado correctamente.";
+            }
+            else
+            {
+                LblMensaje.Text = "Hubo un error al guardar el artículo.";
+            }
+        }
+
+        private void LimpiarFormulario()
+        {
+            ddlTipo.SelectedIndex = 0;
+            ddlPersona.SelectedIndex = 0;
         }
 
         protected void BtnActualizar_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(TBIdCliente.Text))
+            {
+                LblMensaje.Text = "No se ha seleccionado ningún artículo para actualizar.";
+                return;
+            }
 
+            if (string.IsNullOrWhiteSpace(ddlTipo.SelectedValue) ||
+                string.IsNullOrWhiteSpace(ddlPersona.SelectedValue))
+            {
+                LblMensaje.Text = "Todos los campos son obligatorios.";
+                return;
+            }
+
+            Cliente clienteActualizado = new Cliente
+            {
+                IdCliente = int.Parse(TBIdCliente.Text),
+                IdPersona = int.Parse(ddlPersona.SelectedValue),
+                tipoCliente = ddlTipo.SelectedValue
+            };
+
+            bool exito = objCliente.updateCliente(clienteActualizado);
+            if (exito)
+            {
+                LblMensaje.Text = "Artículo actualizado correctamente.";
+                LimpiarFormulario();
+                ObtenerCliente();
+                BtnGuardar.Visible = true;
+                BtnActualizar.Visible = false;
+            }
+            else
+            {
+                LblMensaje.Text = "Hubo un error al actualizar el artículo.";
+            }
         }
 
         protected void GVCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(TBIdCliente.Text))
+            {
+                LblMensaje.Text = "No se ha seleccionado ningún artículo para actualizar.";
+                return;
+            }
 
+            if (string.IsNullOrWhiteSpace(ddlTipo.SelectedValue) ||
+                string.IsNullOrWhiteSpace(ddlPersona.SelectedValue))
+            {
+                LblMensaje.Text = "Todos los campos son obligatorios.";
+                return;
+            }
+
+            Cliente ClienteActualizado = new Cliente
+            {
+                IdCliente = int.Parse(TBIdCliente.Text),
+                IdPersona = int.Parse(ddlPersona.SelectedValue),
+                tipoCliente = ddlTipo.SelectedValue
+            };
+
+            bool exito = objCliente.updateCliente(ClienteActualizado);
+            if (exito)
+            {
+                LblMensaje.Text = "Artículo actualizado correctamente.";
+                LimpiarFormulario();
+                ObtenerCliente();
+                BtnGuardar.Visible = true;
+                BtnActualizar.Visible = false;
+            }
+            else
+            {
+                LblMensaje.Text = "Hubo un error al actualizar el artículo.";
+            }
         }
     }
 }

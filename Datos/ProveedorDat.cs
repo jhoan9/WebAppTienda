@@ -65,5 +65,63 @@ namespace Datos
             // Devuelve la lista de productos
             return lista;
         }
+
+        public bool saveProveedor(Proveedor proveedor)
+        {
+            bool executed = false;
+            int row;
+
+            MySqlCommand objectSelectCmd = new MySqlCommand();
+            objectSelectCmd.Connection = persistencia.openConnection();
+            objectSelectCmd.CommandText = "spInsertProveedor";
+            objectSelectCmd.CommandType = CommandType.StoredProcedure;
+            objectSelectCmd.Parameters.Add("p_estado", MySqlDbType.VarString).Value = proveedor.estadoProveedor;
+            objectSelectCmd.Parameters.Add("p_idpersona", MySqlDbType.VarString).Value = proveedor.IdPersona;
+
+            try
+            {
+                row = objectSelectCmd.ExecuteNonQuery();
+                if (row == 1)
+                {
+                    executed = true;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error " + e.ToString());
+            }
+            persistencia.closeConnection();
+            return executed;
+
+        }
+        
+        public bool updateProveedor(Proveedor proveedorActualizado)
+        {
+            bool executed = false;
+            int row;
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = persistencia.openConnection();
+            objSelectCmd.CommandText = "spUpdateProveedor";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = proveedorActualizado.IdProveedor;
+            objSelectCmd.Parameters.Add("p_estado", MySqlDbType.VarString).Value = proveedorActualizado.estadoProveedor;
+            objSelectCmd.Parameters.Add("p_idPersona", MySqlDbType.Int32).Value = proveedorActualizado.IdPersona;
+
+
+            try
+            {
+                row = objSelectCmd.ExecuteNonQuery();
+                if (row == 1)
+                {
+                    executed = true;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error " + e.ToString());
+            }
+            persistencia.closeConnection();
+            return executed;
+        }
     }
 }

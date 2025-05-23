@@ -14,5 +14,15 @@ namespace Logica
         {
             return objCliente.obtenerCliente();
         }
+
+        public bool saveCliente(Cliente cliente)
+        {
+            return objCliente.saveCliente(cliente);
+        }
+
+        public bool updateCliente(Cliente cliente)
+        {
+            return objCliente.updateCliente(cliente);
+        }
     }
 }

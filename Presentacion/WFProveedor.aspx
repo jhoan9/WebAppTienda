@@ -44,7 +44,7 @@
 
         <h2>Lista de Proveedores</h2>
         <asp:GridView ID="GVProveedor" runat="server" CssClass="tabla" AutoGenerateColumns="false"
-            OnSelectedIndexChanged="GVProveedor_SelectedIndexChanged">
+            OnSelectedIndexChanged="GVProveedor_SelectedIndexChanged" OnRowDataBound="GVProveedor_RowDataBound">
             <Columns>
                 <asp:BoundField DataField="idproveedor" HeaderText="ID" />
                 <asp:BoundField DataField="per_nombre" HeaderText="Nombre Completo" />
@@ -53,6 +53,7 @@
                 <asp:BoundField DataField="per_correo" HeaderText="Correo" />
                 <asp:BoundField DataField="pro_estado" HeaderText="Estado" />
                 <asp:BoundField DataField="IdPersona" HeaderText="ID Persona" />
+                 <asp:CommandField ShowSelectButton="true" />
             </Columns>
         </asp:GridView>
     </div>
