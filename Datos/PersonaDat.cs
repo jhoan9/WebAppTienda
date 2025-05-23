@@ -64,7 +64,7 @@ namespace Datos
             return lista;
         }
 
-        public bool savePersona(String _name, String _lastname, String _phone, String _addres, String _email)
+        public bool savePersona(Persona persona)
         {
             bool executed = false;
             int row;
@@ -73,11 +73,11 @@ namespace Datos
             objectSelectCmd.Connection = persistencia.openConnection();
             objectSelectCmd.CommandText = "spInsertPerson";
             objectSelectCmd.CommandType = CommandType.StoredProcedure;
-            objectSelectCmd.Parameters.Add("p_name", MySqlDbType.VarString).Value = _name;
-            objectSelectCmd.Parameters.Add("p_lastName", MySqlDbType.VarString).Value = _lastname;
-            objectSelectCmd.Parameters.Add("p_phone", MySqlDbType.VarString).Value = _phone;
-            objectSelectCmd.Parameters.Add("p_addres", MySqlDbType.VarString).Value = _addres;
-            objectSelectCmd.Parameters.Add("p_email", MySqlDbType.VarString).Value = _email;
+            objectSelectCmd.Parameters.Add("p_name", MySqlDbType.VarString).Value = persona.nombrePersona;
+            objectSelectCmd.Parameters.Add("p_lastName", MySqlDbType.VarString).Value = persona.apellidoPersona;
+            objectSelectCmd.Parameters.Add("p_phone", MySqlDbType.VarString).Value = persona.telefonoPersona;
+            objectSelectCmd.Parameters.Add("p_addres", MySqlDbType.VarString).Value = persona.direccionPersona;
+            objectSelectCmd.Parameters.Add("p_email", MySqlDbType.VarString).Value = persona.correoPersona;
 
             try
             {
@@ -96,7 +96,7 @@ namespace Datos
 
         }
 
-        public bool updatePersona(int _p_id, string _p_name, string _p_lastName, string _p_phone, string _p_address, string _p_email)
+        public bool updatePersona(Persona personaActualizado)
         {
             bool executed = false;
             int row;
@@ -105,12 +105,12 @@ namespace Datos
             objSelectCmd.Connection = persistencia.openConnection();
             objSelectCmd.CommandText = "spUpdatePerson";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
-            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _p_id;
-            objSelectCmd.Parameters.Add("p_name", MySqlDbType.VarString).Value = _p_name;
-            objSelectCmd.Parameters.Add("p_lastName", MySqlDbType.VarString).Value = _p_lastName;
-            objSelectCmd.Parameters.Add("p_phone", MySqlDbType.VarString).Value = _p_phone;
-            objSelectCmd.Parameters.Add("p_address", MySqlDbType.VarString).Value = _p_address;
-            objSelectCmd.Parameters.Add("p_email", MySqlDbType.VarString).Value = _p_email;            
+            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = personaActualizado.IdPersona;
+            objSelectCmd.Parameters.Add("p_name", MySqlDbType.VarChar).Value = personaActualizado.nombrePersona;
+            objSelectCmd.Parameters.Add("p_lastName", MySqlDbType.VarChar).Value = personaActualizado.apellidoPersona;
+            objSelectCmd.Parameters.Add("p_phone", MySqlDbType.VarChar).Value = personaActualizado.telefonoPersona;
+            objSelectCmd.Parameters.Add("p_address", MySqlDbType.VarChar).Value = personaActualizado.direccionPersona;
+            objSelectCmd.Parameters.Add("p_email", MySqlDbType.VarChar).Value = personaActualizado.correoPersona;
 
             try
             {
