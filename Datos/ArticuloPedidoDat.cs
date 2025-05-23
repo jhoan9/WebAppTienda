@@ -68,7 +68,7 @@ namespace Datos
             return lista;
         }
 
-        public bool saveArticuloPedido(int _id_articulo, int _id_pedido, int _cantidad_articulo)
+        public bool saveArticuloPedido(ArticuloPedido articuloPedido)
         {
             bool executed = false;
             int row;
@@ -77,9 +77,9 @@ namespace Datos
             objectSelectCmd.Connection = persistencia.openConnection();
             objectSelectCmd.CommandText = "spInsertArticuloPedido";
             objectSelectCmd.CommandType = CommandType.StoredProcedure;
-            objectSelectCmd.Parameters.Add("p_articulo_id_articulo", MySqlDbType.Int32).Value = _id_articulo;
-            objectSelectCmd.Parameters.Add("p_pedido_idpedido", MySqlDbType.Int32).Value = _id_pedido;
-            objectSelectCmd.Parameters.Add("p_art_pedido_cantidad", MySqlDbType.Int32).Value = _cantidad_articulo;
+            objectSelectCmd.Parameters.Add("p_articulo_id_articulo", MySqlDbType.Int32).Value = articuloPedido.IdArticulo;
+            objectSelectCmd.Parameters.Add("p_pedido_idpedido", MySqlDbType.Int32).Value = articuloPedido.IdPedido;
+            objectSelectCmd.Parameters.Add("p_art_pedido_cantidad", MySqlDbType.Int32).Value = articuloPedido.cantidadArticuloPedido;
 
             try
             {
@@ -98,7 +98,7 @@ namespace Datos
 
         }
 
-        public bool updatePersona(int _p_id_articulo_pedido, int _id_articulo, int _id_pedido, int _cantidad_articulo_pedido)
+        public bool updateArticuloPedido(ArticuloPedido articuloPedidoActualizado)
         {
             bool executed = false;
             int row;
@@ -107,10 +107,10 @@ namespace Datos
             objSelectCmd.Connection = persistencia.openConnection();
             objSelectCmd.CommandText = "spUpdateArticuloPedido";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
-            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _p_id_articulo_pedido;
-            objSelectCmd.Parameters.Add("p_articulo_id_articulo", MySqlDbType.Int32).Value = _id_articulo;
-            objSelectCmd.Parameters.Add("p_pedido_idpedido", MySqlDbType.Int32).Value = _id_pedido;
-            objSelectCmd.Parameters.Add("p_art_pedido_cantidad", MySqlDbType.Int32).Value = _cantidad_articulo_pedido;
+            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = articuloPedidoActualizado.IdpedidoArticulo;
+            objSelectCmd.Parameters.Add("p_articulo_id_articulo", MySqlDbType.Int32).Value = articuloPedidoActualizado.IdArticulo;
+            objSelectCmd.Parameters.Add("p_pedido_idpedido", MySqlDbType.Int32).Value = articuloPedidoActualizado.IdArticulo;
+            objSelectCmd.Parameters.Add("p_art_pedido_cantidad", MySqlDbType.Int32).Value = articuloPedidoActualizado.cantidadArticuloPedido;
 
             try
             {

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WFArticuloPedido.aspx.cs" Inherits="Presentacion.WFArticuloPedido" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WFArticuloPedido.aspx.cs" Inherits="Presentacion.WFArticuloPedido"%>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,7 +9,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="container">
+        <div class="container-articuloPedido">
             <h1>Gestión de Artículo Pedido</h1>
 
             <nav>
@@ -45,7 +45,7 @@
 
             <h2>Lista de Artículos por Pedido</h2>
             <asp:GridView ID="GVArticuloPedido" runat="server" CssClass="tabla" AutoGenerateColumns="false"
-                OnSelectedIndexChanged="GVArticuloPedido_SelectedIndexChanged">
+                OnSelectedIndexChanged="GVArticuloPedido_SelectedIndexChanged" OnRowDataBound="GVArticuloPedido_RowDataBound">
                 <Columns>
                     <asp:BoundField DataField="IdpedidoArticulo" HeaderText="ID" />
                     <asp:BoundField DataField="IdArticulo" HeaderText="ID Artículo" />
@@ -56,6 +56,7 @@
                     <asp:BoundField DataField="pedidoDescripcion" HeaderText="Descripción" />
                     <asp:BoundField DataField="fecha" HeaderText="Fecha" />
                     <asp:BoundField DataField="precioArticulo" HeaderText="Precio" />
+                    <asp:CommandField ShowSelectButton="true"/>
                 </Columns>
             </asp:GridView>
         </div>

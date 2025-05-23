@@ -28,7 +28,7 @@ namespace Presentacion
 
         private void CargarCategorias()
         {
-            var categorias = objCategoria.obtenerCategoria();
+            List<Categoria> categorias = objCategoria.obtenerCategoria();
             DDLCategoria.DataSource = categorias;
             DDLCategoria.DataTextField = "nombreCategoria";
             DDLCategoria.DataValueField = "IdCategoria";
@@ -91,6 +91,7 @@ namespace Presentacion
             else
             {
                 LblMensaje.Text = "Hubo un error al guardar el artículo.";
+
             }
         }
 
