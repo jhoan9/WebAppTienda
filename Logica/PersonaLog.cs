@@ -17,5 +17,14 @@ namespace Logica
         {
             return objPersona.obtenerPersona();
         }
+        public bool savePersona(Persona persona)
+        {
+            return objPersona.savePersona(persona);
+        }
+
+        public bool updatePersona(Persona personaActualizado)
+        {
+            return objPersona.updatePersona(personaActualizado);
+        }
     }
 }
