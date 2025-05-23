@@ -62,7 +62,7 @@ namespace Datos
             return lista;
         }
 
-        public bool savePedido(DateTime _p_ped_fecha, String _p_ped_descripcion, int _p_cliente_dni)
+        public bool savePedido(Pedido pedido)
         {
             bool executed = false;
             int row;
@@ -71,9 +71,9 @@ namespace Datos
             objectSelectCmd.Connection = persistencia.openConnection();
             objectSelectCmd.CommandText = "spInsertPedido";
             objectSelectCmd.CommandType = CommandType.StoredProcedure;
-            objectSelectCmd.Parameters.Add("p_ped_fecha", MySqlDbType.DateTime).Value = _p_ped_fecha;
-            objectSelectCmd.Parameters.Add("p_ped_descripcion", MySqlDbType.VarString).Value = _p_ped_descripcion;
-            objectSelectCmd.Parameters.Add("p_cliente_dni", MySqlDbType.Int24).Value = _p_cliente_dni;
+            objectSelectCmd.Parameters.Add("p_ped_fecha", MySqlDbType.DateTime).Value = pedido.fechaPedido;
+            objectSelectCmd.Parameters.Add("p_ped_descripcion", MySqlDbType.VarString).Value = pedido.descripcionPedido;
+            objectSelectCmd.Parameters.Add("p_cliente_dni", MySqlDbType.Int24).Value = pedido.IdCliente;
 
 
             try
@@ -93,7 +93,7 @@ namespace Datos
 
         }
 
-        public bool updateArticulo(int _p_id, DateTime _p_ped_fecha, String _p_ped_descripcion, int _p_cliente_dni)
+        public bool updatePedido(Pedido pedido)
         {
             bool executed = false;
             int row;
@@ -102,10 +102,10 @@ namespace Datos
             objSelectCmd.Connection = persistencia.openConnection();
             objSelectCmd.CommandText = "spUpdatePedido";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
-            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _p_id;
-            objSelectCmd.Parameters.Add("p_ped_fecha", MySqlDbType.DateTime).Value = _p_ped_fecha;
-            objSelectCmd.Parameters.Add("p_ped_descripcion", MySqlDbType.VarString).Value = _p_ped_descripcion;
-            objSelectCmd.Parameters.Add("p_cliente_dni", MySqlDbType.Int32).Value = _p_cliente_dni;
+            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = pedido.IdPedido;
+            objSelectCmd.Parameters.Add("p_ped_fecha", MySqlDbType.DateTime).Value = pedido.fechaPedido;
+            objSelectCmd.Parameters.Add("p_ped_descripcion", MySqlDbType.VarString).Value = pedido.descripcionPedido;
+            objSelectCmd.Parameters.Add("p_cliente_dni", MySqlDbType.Int32).Value = pedido.IdCliente;
 
 
             try

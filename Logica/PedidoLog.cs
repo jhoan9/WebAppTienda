@@ -17,5 +17,15 @@ namespace Logica
         {
             return objPedido.obtenerPedido();
         }
+
+        public bool savePedido(Pedido pedido)
+        {
+            return objPedido.savePedido(pedido);
+        }
+
+        public bool updatePedido(Pedido pedido)
+        {
+            return objPedido.updatePedido(pedido);
+        }
     }
 }
