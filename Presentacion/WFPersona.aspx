@@ -10,7 +10,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="container">
+        <div class="container-persona">
             <h1>Gestión de Persona</h1>
 
             <nav>
@@ -51,7 +51,7 @@
 
             <div class="form-buttons">
                 <asp:Button ID="BtnGuardar" runat="server" OnClick="BtnGuardar_Click" Text="Guardar" CssClass="btn" />
-                <asp:Button ID="BtnActualizar" runat="server" Text="Actualizar" CssClass="btn btn-secundario" OnClick="BtnActualizar_Click" />
+                <asp:Button ID="BtnActualizar" runat="server" Text="Actualizar" CssClass="btn btn-secundario" OnClick="BtnActualizar_Click" Visible="false" />
             </div>
 
             <h2>Lista de Personas</h2>
@@ -61,9 +61,9 @@
                 <Columns>
                     <asp:BoundField DataField="IdPersona" HeaderText="ID    " />
                     <asp:BoundField DataField="nombrePersona" HeaderText="Nombre" />
-                    <asp:BoundField DataField="apellidoPersona" HeaderText="Apellido" />
+                    <asp:BoundField DataField="apellidoPersona" HeaderText="Apellido" HtmlEncode="false" />
                     <asp:BoundField DataField="telefonoPersona" HeaderText="Teléfono" />
-                    <asp:BoundField DataField="direccionPersona" HeaderText="Dirección" />
+                    <asp:BoundField DataField="direccionPersona" HeaderText="Dirección" HtmlEncode="false" />
                     <asp:BoundField DataField="correoPersona" HeaderText="Correo Electrónico" />
                     <asp:CommandField ShowSelectButton="true" />
                 </Columns>

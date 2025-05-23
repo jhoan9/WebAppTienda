@@ -95,9 +95,6 @@ namespace Presentacion
                 return;
             }
 
-
-
-
             Persona personaActualizado = new Persona
             {
                 IdPersona = int.Parse(TBIdPersona.Text),
@@ -114,7 +111,7 @@ namespace Presentacion
                 LblMensaje.Text = "Persona actualizada correctamente.";
                 ObtenerPersona();
                 LimpiarFormulario();
-                BtnActualizar.Visible = true;
+                BtnActualizar.Visible = false;
                 BtnGuardar.Visible = true;
 
             }

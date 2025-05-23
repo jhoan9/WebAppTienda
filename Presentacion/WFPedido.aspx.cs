@@ -133,11 +133,11 @@ namespace Presentacion
             bool exito = objPedido.updatePedido(pedidoActualizado);
             if (exito)
             {
-                LblMensaje.Text = "Pedido actualizado correctamente.";
                 LimpiarFormulario();
                 ObtenerPedido();
                 BtnActualizar.Visible = false;
                 BtnGuardar.Visible = true;
+                LblMensaje.Text = "Pedido actualizado correctamente.";
             }
             else
             {

@@ -107,7 +107,7 @@ namespace Datos
             objSelectCmd.Parameters.Add("p_name", MySqlDbType.VarChar).Value = personaActualizado.nombrePersona;
             objSelectCmd.Parameters.Add("p_lastName", MySqlDbType.VarChar).Value = personaActualizado.apellidoPersona;
             objSelectCmd.Parameters.Add("p_phone", MySqlDbType.VarChar).Value = personaActualizado.telefonoPersona;
-            objSelectCmd.Parameters.Add("p_address", MySqlDbType.VarChar).Value = personaActualizado.direccionPersona;
+            objSelectCmd.Parameters.Add("p_addres", MySqlDbType.VarChar).Value = personaActualizado.direccionPersona;
             objSelectCmd.Parameters.Add("p_email", MySqlDbType.VarChar).Value = personaActualizado.correoPersona;
 
             try

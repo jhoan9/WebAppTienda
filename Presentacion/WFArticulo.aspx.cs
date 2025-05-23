@@ -84,9 +84,9 @@ namespace Presentacion
             bool exito = objArticulo.saveArticulo(nuevoArticulo);
             if (exito)
             {
-                LblMensaje.Text = "Artículo guardado correctamente.";
                 LimpiarFormulario();
                 ObtenerArticulos();
+                LblMensaje.Text = "Artículo guardado correctamente.";
             }
             else
             {
@@ -131,12 +131,12 @@ namespace Presentacion
 
             bool exito = objArticulo.updateArticulo(articuloActualizado);
             if (exito)
-            {
-                LblMensaje.Text = "Artículo actualizado correctamente.";
+            {                
                 LimpiarFormulario();
                 ObtenerArticulos();
                 BtnGuardar.Visible = true;
                 BtnActualizar.Visible = false;
+                LblMensaje.Text = "Artículo actualizado correctamente.";
             }
             else
             {

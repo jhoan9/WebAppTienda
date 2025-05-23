@@ -42,12 +42,13 @@
             </div>
 
             <asp:GridView ID="GVCliente" runat="server" AutoGenerateColumns="false" CssClass="tabla"
-                OnSelectedIndexChanged="GVCliente_SelectedIndexChanged" >
+                OnSelectedIndexChanged="GVCliente_SelectedIndexChanged" OnRowDataBound="GVCliente_RowDataBound" >
                 <Columns>
                     <asp:BoundField DataField="IdCliente" HeaderText="ID" />
                     <asp:BoundField DataField="tipoCliente" HeaderText="Tipo" />
                     <asp:BoundField DataField="nombrePersona" HeaderText="Nombre Completo" />
                     <asp:BoundField DataField="IdPersona" HeaderText="ID Persona" />
+                    <asp:CommandField ShowSelectButton="True" />
                 </Columns>
             </asp:GridView>
         </div>

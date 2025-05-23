@@ -74,7 +74,7 @@ namespace Presentacion
             {
                 LimpiarFormulario();
                 ObtenerCliente();
-                LblMensaje.Text = "Proveedor guardado correctamente.";
+                LblMensaje.Text = "Cliente guardado correctamente.";
             }
             else
             {
@@ -113,7 +113,7 @@ namespace Presentacion
             bool exito = objCliente.updateCliente(clienteActualizado);
             if (exito)
             {
-                LblMensaje.Text = "Artículo actualizado correctamente.";
+                LblMensaje.Text = "Cliente actualizado correctamente.";
                 LimpiarFormulario();
                 ObtenerCliente();
                 BtnGuardar.Visible = true;
@@ -127,38 +127,23 @@ namespace Presentacion
 
         protected void GVCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TBIdCliente.Text))
-            {
-                LblMensaje.Text = "No se ha seleccionado ningún artículo para actualizar.";
-                return;
-            }
+            // La fila seleccionada está en GVCategoria.SelectedRow
+            GridViewRow fila = GVCliente.SelectedRow;
+            // Asumiendo que tienes 3 columnas: ID, Nombre, Descripción
+            TBIdCliente.Text = fila.Cells[0].Text;
+            ddlTipo.Text = fila.Cells[1].Text;
+            ddlPersona.Text = fila.Cells[3].Text;
 
-            if (string.IsNullOrWhiteSpace(ddlTipo.SelectedValue) ||
-                string.IsNullOrWhiteSpace(ddlPersona.SelectedValue))
-            {
-                LblMensaje.Text = "Todos los campos son obligatorios.";
-                return;
-            }
+            BtnGuardar.Visible = false;
+            BtnActualizar.Visible = true;
+        }
 
-            Cliente ClienteActualizado = new Cliente
+        protected void GVCliente_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                IdCliente = int.Parse(TBIdCliente.Text),
-                IdPersona = int.Parse(ddlPersona.SelectedValue),
-                tipoCliente = ddlTipo.SelectedValue
-            };
-
-            bool exito = objCliente.updateCliente(ClienteActualizado);
-            if (exito)
-            {
-                LblMensaje.Text = "Artículo actualizado correctamente.";
-                LimpiarFormulario();
-                ObtenerCliente();
-                BtnGuardar.Visible = true;
-                BtnActualizar.Visible = false;
-            }
-            else
-            {
-                LblMensaje.Text = "Hubo un error al actualizar el artículo.";
+                e.Row.Attributes["ondblclick"] = Page.ClientScript.GetPostBackClientHyperlink(GVCliente, "Select$" + e.Row.RowIndex);
+                e.Row.ToolTip = "Doble clic para editar esta categoría";
             }
         }
     }

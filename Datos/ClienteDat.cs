@@ -49,6 +49,7 @@ namespace Datos
                     IdCliente = reader.GetInt32("dni"),
                     tipoCliente = reader.GetString("cli_tipo"),
                     IdPersona = reader.GetInt32("persona_idpersona"),
+                    nombrePersona = reader.GetString("per_nombre")
                    
                 };
 
