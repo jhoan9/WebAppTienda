@@ -100,7 +100,7 @@ namespace Presentacion
 
             Persona personaActualizado = new Persona
             {
-                
+                IdPersona = int.Parse(TBIdPersona.Text),
                 nombrePersona = TBNombre.Text.Trim(),
                 apellidoPersona = TBApellido.Text.Trim(),
                 telefonoPersona = TBTelefono.Text.Trim(),
@@ -112,10 +112,11 @@ namespace Presentacion
             if (exito)
             {
                 LblMensaje.Text = "Persona actualizada correctamente.";
-                LimpiarFormulario();
                 ObtenerPersona();
-                BtnGuardar.Visible = true;
+                LimpiarFormulario();
                 BtnActualizar.Visible = true;
+                BtnGuardar.Visible = true;
+
             }
             else
             {
